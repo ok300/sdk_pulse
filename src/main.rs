@@ -141,10 +141,9 @@ async fn pay_gl_2_ln_address(
     sdk_sender: Arc<BreezServices>,
     ln_address: &str,
 ) -> (Option<u64>, String) {
-    let ts_start = Instant::now();
-
     match parse(ln_address).await {
         Ok(InputType::LnUrlPay { data }) => {
+            let ts_start = Instant::now();
             match sdk_sender
                 .lnurl_pay(1, Some("test-gl2lnurl".into()), data)
                 .await
