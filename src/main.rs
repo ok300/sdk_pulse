@@ -164,8 +164,6 @@ async fn pay_gl_2_gl(
     sdk_sender: Arc<BreezServices>,
     sdk_receiver: Arc<BreezServices>,
 ) -> (Option<u64>, String) {
-    let ts_start = Instant::now();
-
     info!("[sdk-rx] Creating invoice");
     match sdk_receiver
         .receive_payment(ReceivePaymentRequest {
@@ -180,6 +178,8 @@ async fn pay_gl_2_gl(
         .await
     {
         Ok(recv_payment) => {
+            let ts_start = Instant::now();
+
             info!("[sdk-tx] Paying invoice");
             match sdk_sender
                 .send_payment(recv_payment.ln_invoice.bolt11, None)
