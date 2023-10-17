@@ -1,0 +1,16 @@
+[package]
+name = "sdk_pulse"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1"
+bip39 = { version = "2", features = ["rand"] }
+breez-sdk-core = { git = "https://github.com/breez/breez-sdk", rev = "576c1a892563f867c2b48fceb48f0a49d6efd61e" }
+csv = "1.2"
+figment = { version = "0.10", features = ["toml"]}
+log = "0.4"
+serde = "1"
+tokio = "1.29"
