@@ -8,7 +8,7 @@ use bip39::{Language, Mnemonic};
 use breez_sdk_core::*;
 use figment::providers::{Format, Toml};
 use figment::Figment;
-use log::info;
+use log::{error, info};
 use serde::Deserialize;
 
 struct AppEventListener {}
@@ -152,8 +152,15 @@ async fn pay_gl_2_ln_address(
                     Some(Instant::now().duration_since(ts_start).as_secs()),
                     "Ok".into(),
                 ),
-                Err(e) => (None, e.to_string()),
+                Err(e) => {
+                    error!("{e}");
+                    (None, e.to_string())
+                }
             }
+        }
+        Ok(InputType::LnUrlError { data }) => {
+            error!("LNURL error: {}", data.reason);
+            (None, "LNURL error".into())
         }
         _ => (None, "Failed to parse LN Address".into()),
     }
@@ -188,9 +195,15 @@ async fn pay_gl_2_gl(
                     Some(Instant::now().duration_since(ts_start).as_secs()),
                     "Ok".into(),
                 ),
-                Err(e) => (None, format!("[sdk-tx] Failed to send payment: {e}")),
+                Err(e) => {
+                    error!("[sdk-tx] Failed to send payment: {e}");
+                    (None, format!("[sdk-tx] Failed to send payment: {e}"))
+                }
             }
         }
-        Err(e) => (None, format!("[sdk-rx] Failed to create invoice: {e}")),
+        Err(e) => {
+            error!("[sdk-rx] Failed to create invoice: {e}");
+            (None, format!("[sdk-rx] Failed to create invoice: {e}"))
+        }
     }
 }
