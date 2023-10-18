@@ -8,7 +8,7 @@ use bip39::{Language, Mnemonic};
 use breez_sdk_core::*;
 use figment::providers::{Format, Toml};
 use figment::Figment;
-use log::info;
+use log::{error, info};
 use serde::Deserialize;
 
 struct AppEventListener {}
@@ -103,11 +103,6 @@ async fn main() -> Result<()> {
     .await?;
     info!("[sdk_2] Node info: {:?}", sdk_2.node_info()?);
 
-    // Make sure we finish a full sync, e.g. no background sync is running from this point on
-    // We want to avoid any background sync threads affecting the next measurements
-    sdk_1.sync().await?;
-    sdk_2.sync().await?;
-
     info!("Testing GL-2-GL");
     let gl2gl_res = pay_gl_2_gl(sdk_1.clone(), sdk_2.clone()).await;
     info!("Testing GL-2-WoS");
@@ -152,8 +147,15 @@ async fn pay_gl_2_ln_address(
                     Some(Instant::now().duration_since(ts_start).as_secs()),
                     "Ok".into(),
                 ),
-                Err(e) => (None, e.to_string()),
+                Err(e) => {
+                    error!("{e}");
+                    (None, e.to_string())
+                }
             }
+        }
+        Ok(InputType::LnUrlError { data }) => {
+            error!("LNURL error: {}", data.reason);
+            (None, "LNURL error".into())
         }
         _ => (None, "Failed to parse LN Address".into()),
     }
@@ -188,9 +190,15 @@ async fn pay_gl_2_gl(
                     Some(Instant::now().duration_since(ts_start).as_secs()),
                     "Ok".into(),
                 ),
-                Err(e) => (None, format!("[sdk-tx] Failed to send payment: {e}")),
+                Err(e) => {
+                    error!("[sdk-tx] Failed to send payment: {e}");
+                    (None, format!("[sdk-tx] Failed to send payment: {e}"))
+                }
             }
         }
-        Err(e) => (None, format!("[sdk-rx] Failed to create invoice: {e}")),
+        Err(e) => {
+            error!("[sdk-rx] Failed to create invoice: {e}");
+            (None, format!("[sdk-rx] Failed to create invoice: {e}"))
+        }
     }
 }
