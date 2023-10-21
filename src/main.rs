@@ -103,10 +103,10 @@ async fn main() -> Result<()> {
     .await?;
     info!("[sdk_2] Node info: {:?}", sdk_2.node_info()?);
 
-    info!("Testing GL-2-GL");
-    let gl2gl_res = pay_gl_2_gl(sdk_1.clone(), sdk_2.clone()).await;
     info!("Testing GL-2-WoS");
     let gl2wos_res = pay_gl_2_ln_address(sdk_1.clone(), &config.ln_address_wos).await;
+    info!("Testing GL-2-GL");
+    let gl2gl_res = pay_gl_2_gl(sdk_1.clone(), sdk_2.clone()).await;
     info!("Testing GL-2-Tor");
     let gl2tor_res = pay_gl_2_ln_address(sdk_1.clone(), &config.ln_address_tor_node).await;
 
