@@ -140,7 +140,11 @@ async fn pay_gl_2_ln_address(
         Ok(InputType::LnUrlPay { data }) => {
             let ts_start = Instant::now();
             match sdk_sender
-                .lnurl_pay(1, Some("test-gl2lnurl".into()), data)
+                .lnurl_pay(LnUrlPayRequest {
+                    data,
+                    amount_msat: 1_000,
+                    comment: Some("test-gl2lnurl".into()),
+                })
                 .await
             {
                 Ok(_) => (
@@ -168,7 +172,7 @@ async fn pay_gl_2_gl(
     info!("[sdk-rx] Creating invoice");
     match sdk_receiver
         .receive_payment(ReceivePaymentRequest {
-            amount_sats: 1,
+            amount_msat: 1_000,
             description: "test-gl2gl".to_string(),
             preimage: None,
             opening_fee_params: None,
@@ -183,7 +187,10 @@ async fn pay_gl_2_gl(
 
             info!("[sdk-tx] Paying invoice");
             match sdk_sender
-                .send_payment(recv_payment.ln_invoice.bolt11, None)
+                .send_payment(SendPaymentRequest {
+                    bolt11: recv_payment.ln_invoice.bolt11,
+                    amount_msat: None,
+                })
                 .await
             {
                 Ok(_) => (
