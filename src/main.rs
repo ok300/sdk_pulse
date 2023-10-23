@@ -173,7 +173,7 @@ async fn pay_gl_2_gl(
             preimage: None,
             opening_fee_params: None,
             use_description_hash: None,
-            expiry: None,
+            expiry: Some(60), // Small expiration time, so VLS can prune older invoices
             cltv: None,
         })
         .await
