@@ -3,13 +3,11 @@ name = "sdk_pulse"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 anyhow = "1"
 bip39 = { version = "2", features = ["rand"] }
-#breez-sdk-core = { git = "https://github.com/breez/breez-sdk", rev = "541fd3ea34a9a185b184cdd92b2abcc1c33468ff" }
-breez-sdk-core = { git = "https://github.com/breez/breez-sdk", branch = "fast-sync" }
+breez-sdk-core = { git = "https://github.com/breez/breez-sdk", rev = "45ed174a132239a589ba4ec8cb2b383990bf5f0d" }
 csv = "1.2"
 figment = { version = "0.10", features = ["toml"]}
 log = "0.4"
