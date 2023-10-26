@@ -477,7 +477,7 @@ dependencies = [
 [[package]]
 name = "breez-sdk-core"
 version = "0.2.7"
-source = "git+https://github.com/breez/breez-sdk?rev=45ed174a132239a589ba4ec8cb2b383990bf5f0d#45ed174a132239a589ba4ec8cb2b383990bf5f0d"
+source = "git+https://github.com/breez/breez-sdk?rev=0f90197d5b4c2bcad3c1bce9fa04e61a95209f8d#0f90197d5b4c2bcad3c1bce9fa04e61a95209f8d"
 dependencies = [
  "aes",
  "anyhow",
@@ -490,6 +490,7 @@ dependencies = [
  "ecies",
  "env_logger 0.10.0",
  "flutter_rust_bridge",
+ "futures",
  "gl-client",
  "hex",
  "lazy_static",
@@ -995,9 +996,9 @@ dependencies = [
 
 [[package]]
 name = "flutter_rust_bridge"
-version = "1.75.2"
+version = "1.80.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "934edaa5cab8c8df975c347e08014605775fb6969631b725cf2b962bd0988663"
+checksum = "fd0305ebc9f097d9826530a55fc2acd63222e912c663f7adce3ab641ecc0f346"
 dependencies = [
  "allo-isolate",
  "anyhow",
@@ -1191,7 +1192,7 @@ checksum = "6fb8d784f27acf97159b40fc4db5ecd8aa23b9ad5ef69cdd136d3bc80665f0c0"
 [[package]]
 name = "gl-client"
 version = "0.1.9"
-source = "git+https://github.com/Blockstream/greenlight.git?rev=28f41bb835659cb3d2e60cd612548f5b22027bb1#28f41bb835659cb3d2e60cd612548f5b22027bb1"
+source = "git+https://github.com/Blockstream/greenlight.git?rev=c7ff67eb062c021105f5601df3ac8699ecbeb51c#c7ff67eb062c021105f5601df3ac8699ecbeb51c"
 dependencies = [
  "anyhow",
  "async-trait",
