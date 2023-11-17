@@ -439,15 +439,6 @@ checksum = "b4682ae6287fcf752ecaabbfcc7b6f9b72aa33933dc23a554d853aea8eea8635"
 
 [[package]]
 name = "block-buffer"
-version = "0.9.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4152116fd6e9dadb291ae18fc1ec3575ed6d84c29642d97890f4b4a3417297e4"
-dependencies = [
- "generic-array",
-]
-
-[[package]]
-name = "block-buffer"
 version = "0.10.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3078c7629b62d3f0439517fa394996acacc5cbc91c5a20d8c658e77abd503a71"
@@ -476,8 +467,8 @@ dependencies = [
 
 [[package]]
 name = "breez-sdk-core"
-version = "0.2.7"
-source = "git+https://github.com/breez/breez-sdk?rev=0f90197d5b4c2bcad3c1bce9fa04e61a95209f8d#0f90197d5b4c2bcad3c1bce9fa04e61a95209f8d"
+version = "0.2.9"
+source = "git+https://github.com/breez/breez-sdk?rev=c49bb6b2a46e650720c6b54832f92da8301593f0#c49bb6b2a46e650720c6b54832f92da8301593f0"
 dependencies = [
  "aes",
  "anyhow",
@@ -623,9 +614,8 @@ dependencies = [
 
 [[package]]
 name = "cln-grpc"
-version = "0.1.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "57af6eff15ee3fd7a0e09d0baeab8d33c892a73d97b87248e5f94f4749eacfe1"
+version = "0.1.7"
+source = "git+https://github.com/cdecker/lightning.git?tag=gl-20231113#075927b2c5f38fdbde4c0764135be58340b0ce08"
 dependencies = [
  "anyhow",
  "bitcoin 0.30.1",
@@ -706,16 +696,6 @@ dependencies = [
  "generic-array",
  "rand_core",
  "typenum",
-]
-
-[[package]]
-name = "crypto-mac"
-version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b584a330336237c1eecd3e94266efb216c56ed91225d634cb2991c5f3fd1aeab"
-dependencies = [
- "generic-array",
- "subtle",
 ]
 
 [[package]]
@@ -842,7 +822,7 @@ version = "0.10.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9ed9a281f7bc9b7576e61468ba615a66a5c8cfdff42420a70aa82701a3b1e292"
 dependencies = [
- "block-buffer 0.10.4",
+ "block-buffer",
  "crypto-common",
  "subtle",
 ]
@@ -866,18 +846,20 @@ checksum = "1435fa1053d8b2fbbe9be7e97eca7f33d37b28409959813daefc1446a14247f1"
 
 [[package]]
 name = "ecies"
-version = "0.2.4"
+version = "0.2.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "99640b5549bc868ffda7e9bd98d4998d86ddb7f5fb302f25837be276ba4dfcb4"
+checksum = "53f43496fc04523aa716c5dd76133cb6d7c81eb213375684d06a8b1683f8bc1e"
 dependencies = [
  "aes-gcm",
  "getrandom",
  "hkdf",
  "libsecp256k1",
  "once_cell",
- "rand",
- "sha2 0.10.7",
+ "parking_lot",
+ "rand_core",
+ "sha2",
  "typenum",
+ "wasm-bindgen",
 ]
 
 [[package]]
@@ -1192,7 +1174,7 @@ checksum = "6fb8d784f27acf97159b40fc4db5ecd8aa23b9ad5ef69cdd136d3bc80665f0c0"
 [[package]]
 name = "gl-client"
 version = "0.1.9"
-source = "git+https://github.com/Blockstream/greenlight.git?rev=c7ff67eb062c021105f5601df3ac8699ecbeb51c#c7ff67eb062c021105f5601df3ac8699ecbeb51c"
+source = "git+https://github.com/Blockstream/greenlight.git?branch=20231116-signer-heartbeat#fa054dd126b708a1cf52629efa28181ae8a723bb"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -1220,7 +1202,6 @@ dependencies = [
  "serde",
  "serde_bolt 0.2.6",
  "serde_json",
- "serde_with 2.3.3",
  "sha256",
  "tempfile",
  "thiserror",
@@ -1330,17 +1311,7 @@ version = "0.12.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "791a029f6b9fc27657f6f188ec6e5e43f6911f6f878e0dc5501396e09809d437"
 dependencies = [
- "hmac 0.12.1",
-]
-
-[[package]]
-name = "hmac"
-version = "0.8.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "126888268dcc288495a26bf004b38c5fdbb31682f992c84ceb046a1f0fe38840"
-dependencies = [
- "crypto-mac",
- "digest 0.9.0",
+ "hmac",
 ]
 
 [[package]]
@@ -1350,17 +1321,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6c49c37c09c17a53d937dfbb742eb3a961d65a994e6bcdcf37e7399d0cc8ab5e"
 dependencies = [
  "digest 0.10.7",
-]
-
-[[package]]
-name = "hmac-drbg"
-version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "17ea0a1394df5b6574da6e0c1ade9e78868c9fb0a4e5ef4428e32da4676b85b1"
-dependencies = [
- "digest 0.9.0",
- "generic-array",
- "hmac 0.8.1",
 ]
 
 [[package]]
@@ -1608,14 +1568,11 @@ dependencies = [
  "arrayref",
  "base64 0.13.1",
  "digest 0.9.0",
- "hmac-drbg",
  "libsecp256k1-core",
  "libsecp256k1-gen-ecmult",
  "libsecp256k1-gen-genmult",
  "rand",
  "serde",
- "sha2 0.9.9",
- "typenum",
 ]
 
 [[package]]
@@ -2679,7 +2636,6 @@ dependencies = [
  "base64 0.13.1",
  "chrono",
  "hex",
- "indexmap 1.9.3",
  "serde",
  "serde_json",
  "serde_with_macros 2.3.3",
@@ -2729,19 +2685,6 @@ dependencies = [
 
 [[package]]
 name = "sha2"
-version = "0.9.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4d58a1e1bf39749807d89cf2d98ac2dfa0ff1cb3faa38fbb64dd88ac8013d800"
-dependencies = [
- "block-buffer 0.9.0",
- "cfg-if",
- "cpufeatures",
- "digest 0.9.0",
- "opaque-debug",
-]
-
-[[package]]
-name = "sha2"
 version = "0.10.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "479fb9d862239e610720565ca91403019f2f00410f1864c5aa7479b950a76ed8"
@@ -2760,7 +2703,7 @@ dependencies = [
  "async-trait",
  "bytes",
  "hex",
- "sha2 0.10.7",
+ "sha2",
  "tokio",
 ]
 
@@ -2977,12 +2920,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "62cc94d358b5a1e84a5cb9109f559aa3c4d634d2b1b4de3d0fa4adc7c78e2861"
 dependencies = [
  "anyhow",
- "hmac 0.12.1",
+ "hmac",
  "once_cell",
  "pbkdf2",
  "rand",
  "rustc-hash",
- "sha2 0.10.7",
+ "sha2",
  "thiserror",
  "unicode-normalization",
  "wasm-bindgen",
