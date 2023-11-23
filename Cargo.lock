@@ -468,7 +468,7 @@ dependencies = [
 [[package]]
 name = "breez-sdk-core"
 version = "0.2.9"
-source = "git+https://github.com/breez/breez-sdk?rev=c49bb6b2a46e650720c6b54832f92da8301593f0#c49bb6b2a46e650720c6b54832f92da8301593f0"
+source = "git+https://github.com/breez/breez-sdk?rev=5687f00303b572ecc15c03f7bdd0737225546579#5687f00303b572ecc15c03f7bdd0737225546579"
 dependencies = [
  "aes",
  "anyhow",
@@ -1174,7 +1174,7 @@ checksum = "6fb8d784f27acf97159b40fc4db5ecd8aa23b9ad5ef69cdd136d3bc80665f0c0"
 [[package]]
 name = "gl-client"
 version = "0.1.9"
-source = "git+https://github.com/Blockstream/greenlight.git?branch=20231116-signer-heartbeat#fa054dd126b708a1cf52629efa28181ae8a723bb"
+source = "git+https://github.com/Blockstream/greenlight.git?rev=84a66ac3c467569365285814ef5a691b5b97f60d#84a66ac3c467569365285814ef5a691b5b97f60d"
 dependencies = [
  "anyhow",
  "async-trait",
