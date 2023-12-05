@@ -132,6 +132,20 @@ async fn main() -> Result<()> {
     Ok(())
 }
 
+/// Build result tuple for a successful test
+fn test_ok(ts_start: Instant) -> (Option<u64>, String) {
+    (
+        Some(Instant::now().duration_since(ts_start).as_secs()),
+        "Ok".into(),
+    )
+}
+
+/// Build result tuple for a failed test
+fn test_err(err: &str) -> (Option<u64>, String) {
+    error!("{err}");
+    (None, err.to_string())
+}
+
 async fn pay_gl_2_ln_address(
     sdk_sender: Arc<BreezServices>,
     ln_address: &str,
@@ -147,21 +161,17 @@ async fn pay_gl_2_ln_address(
                 })
                 .await
             {
-                Ok(_) => (
-                    Some(Instant::now().duration_since(ts_start).as_secs()),
-                    "Ok".into(),
-                ),
-                Err(e) => {
-                    error!("{e}");
-                    (None, e.to_string())
-                }
+                // LNURL-pay success case
+                Ok(LnUrlPayResult::EndpointSuccess { .. }) => test_ok(ts_start),
+
+                // LNURL-pay failure cases
+                Ok(LnUrlPayResult::EndpointError { data }) => test_err(&data.reason),
+                Ok(LnUrlPayResult::PayError { data }) => test_err(&data.reason),
+                Err(e) => test_err(&e.to_string()),
             }
         }
-        Ok(InputType::LnUrlError { data }) => {
-            error!("LNURL error: {}", data.reason);
-            (None, "LNURL error".into())
-        }
-        _ => (None, "Failed to parse LN Address".into()),
+        Ok(InputType::LnUrlError { data }) => test_err(&format!("LNURL error: {}", data.reason)),
+        _ => test_err("Failed to parse LN Address"),
     }
 }
 
@@ -193,19 +203,10 @@ async fn pay_gl_2_gl(
                 })
                 .await
             {
-                Ok(_) => (
-                    Some(Instant::now().duration_since(ts_start).as_secs()),
-                    "Ok".into(),
-                ),
-                Err(e) => {
-                    error!("[sdk-tx] Failed to send payment: {e}");
-                    (None, format!("[sdk-tx] Failed to send payment: {e}"))
-                }
+                Ok(_) => test_ok(ts_start),
+                Err(e) => test_err(&format!("[sdk-tx] Failed to send payment: {e}")),
             }
         }
-        Err(e) => {
-            error!("[sdk-rx] Failed to create invoice: {e}");
-            (None, format!("[sdk-rx] Failed to create invoice: {e}"))
-        }
+        Err(e) => test_err(&format!("[sdk-rx] Failed to create invoice: {e}")),
     }
 }
