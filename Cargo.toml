@@ -7,7 +7,7 @@ edition = "2021"
 [dependencies]
 anyhow = "1"
 bip39 = { version = "2", features = ["rand"] }
-breez-sdk-core = { git = "https://github.com/breez/breez-sdk", rev = "5687f00303b572ecc15c03f7bdd0737225546579" }
+breez-sdk-core = { git = "https://github.com/breez/breez-sdk", rev = "d18529988eb7b1038473161e44c88225c7a0236d" }
 csv = "1.2"
 figment = { version = "0.10", features = ["toml"]}
 log = "0.4"
