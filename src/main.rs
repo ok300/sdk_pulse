@@ -53,7 +53,15 @@ async fn get_sdk(
     // Create working dir if it doesn't exist
     std::fs::create_dir_all(working_dir)?;
 
-    let sdk = BreezServices::connect(config, seed.to_vec(), Box::new(AppEventListener {})).await?;
+    let sdk = BreezServices::connect(
+        ConnectRequest {
+            config,
+            seed: seed.to_vec(),
+            restore_only: None,
+        },
+        Box::new(AppEventListener {}),
+    )
+    .await?;
 
     Ok(sdk)
 }
