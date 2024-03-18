@@ -470,8 +470,8 @@ dependencies = [
 
 [[package]]
 name = "breez-sdk-core"
-version = "0.3.1"
-source = "git+https://github.com/breez/breez-sdk?rev=02b25ca2dd57de97c50d7cab5192fe72768687d8#02b25ca2dd57de97c50d7cab5192fe72768687d8"
+version = "0.3.2"
+source = "git+https://github.com/breez/breez-sdk?rev=9538d1143f3dc05729e5fd4fe0a6c46fe305b7a2#9538d1143f3dc05729e5fd4fe0a6c46fe305b7a2"
 dependencies = [
  "aes",
  "anyhow",
@@ -487,7 +487,6 @@ dependencies = [
  "gl-client",
  "hex",
  "lazy_static",
- "lightning",
  "log",
  "miniz_oxide",
  "once_cell",
@@ -1172,8 +1171,8 @@ checksum = "4271d37baee1b8c7e4b708028c57d816cf9d2434acb33a549475f78c181f6253"
 
 [[package]]
 name = "gl-client"
-version = "0.1.9"
-source = "git+https://github.com/Blockstream/greenlight.git?rev=cd51120d8cd57324c5511247e4006bf2ff02c76f#cd51120d8cd57324c5511247e4006bf2ff02c76f"
+version = "0.1.11"
+source = "git+https://github.com/Blockstream/greenlight.git?rev=1dbe06999bac216212124779c60006bd3d135ac7#1dbe06999bac216212124779c60006bd3d135ac7"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -3180,9 +3179,9 @@ checksum = "e421abadd41a4225275504ea4d6566923418b7f05506fbc9c0fe86ba7396114b"
 
 [[package]]
 name = "txoo"
-version = "0.6.3"
+version = "0.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "67d7f813b11b656c950f66dd1ea293d147e2e2c3567d4246b3d682916dc19a5c"
+checksum = "2d63e3a8a97175f205a3b101cb100568ce15e6b4e77d88207e9065da4a4e061e"
 dependencies = [
  "bitcoin 0.29.2",
  "log",
@@ -3288,9 +3287,9 @@ checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
 
 [[package]]
 name = "vls-core"
-version = "0.11.0-rc.1"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "71c9571f43c1d63d301e4f88892cc7bd570b28fb6d44e8af3fac86bce210d8f0"
+checksum = "1210aae1bc771b5ff39372466cf94ea23130a9d3ed0bbbafb6ee4443976de945"
 dependencies = [
  "anyhow",
  "backtrace",
@@ -3315,9 +3314,9 @@ dependencies = [
 
 [[package]]
 name = "vls-persist"
-version = "0.11.0-rc.1"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2bad8154243b9db47c8cd0efc3513f07499faa7e31f25c8e7027a13241362605"
+checksum = "e8a9de079c84145fd4df1f826970d140f1a364fbd0f68f1944d16149988a3931"
 dependencies = [
  "hex",
  "log",
@@ -3330,9 +3329,9 @@ dependencies = [
 
 [[package]]
 name = "vls-protocol"
-version = "0.11.0-rc.1"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c2b2f877b5ee624f38a61fb37fad38678514176a01da925aa265a70a977df70"
+checksum = "e01ad8baa041296e8d715fd34d052d00ee5210038cc755e0f993c8c827935a85"
 dependencies = [
  "as-any",
  "bitcoin-consensus-derive",
@@ -3345,9 +3344,9 @@ dependencies = [
 
 [[package]]
 name = "vls-protocol-signer"
-version = "0.11.0-rc.1"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "98a720d79fa6a2da1c5ed528312eacd15fa1b7af1d8dc4caa8775222e817ac21"
+checksum = "a4435ed40d9bab3350f0caa305685bc3ac95e268e9c3b3f09bc08b002fac19ba"
 dependencies = [
  "bit-vec",
  "log",
