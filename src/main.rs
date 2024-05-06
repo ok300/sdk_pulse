@@ -166,6 +166,7 @@ async fn pay_gl_2_ln_address(
                     data,
                     amount_msat: 1_000,
                     comment: Some("test-gl2lnurl".into()),
+                    payment_label: None,
                 })
                 .await
             {
@@ -208,6 +209,7 @@ async fn pay_gl_2_gl(
                 .send_payment(SendPaymentRequest {
                     bolt11: recv_payment.ln_invoice.bolt11,
                     amount_msat: None,
+                    label: None,
                 })
                 .await
             {
